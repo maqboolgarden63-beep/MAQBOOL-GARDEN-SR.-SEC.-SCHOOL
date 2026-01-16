@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MAQBOOL GARDEN | Academic Records</title>
+
+<style>
+:root{
+    --primary:#1e6fb8;
+    --secondary:#2ecc71;
+    --notice:#fff6d6;
+    --card:#ffffff;
+}
+
+body{
+    margin:0;
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:linear-gradient(135deg,#eaf4ff,#f7fff9);
+}
+
+/* HEADER */
+.school-header{
+    background:linear-gradient(135deg,#1e6fb8,#144a7d);
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+.school-header h1{
+    margin:0;
+    font-size:36px;
+    letter-spacing:2px;
+}
+
+/* NOTICE BOARD */
+.notice-board{
+    background:var(--notice);
+    padding:15px;
+    margin:15px;
+    border-left:6px solid var(--primary);
+    border-radius:8px;
+}
+
+.notice-board textarea{
+    width:100%;
+    height:80px;
+    padding:10px;
+    font-size:14px;
+    resize:none;
+}
+
+/* GENERAL */
+button{
+    margin-top:8px;
+    padding:8px 15px;
+    border:none;
+    border-radius:6px;
+    background:var(--secondary);
+    color:white;
+    cursor:pointer;
+}
+
+.main{ padding:20px; }
+
+select{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border-radius:8px;
+    border:2px solid var(--primary);
+    margin-bottom:15px;
+}
+
+.section-box{
+    background:var(--card);
+    padding:20px;
+    border-radius:12px;
+    margin-top:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+    border-left:6px solid var(--secondary);
+}
+
+textarea{
+    width:100%;
+    height:120px;
+    padding:10px;
+    font-size:15px;
+}
+
+.hidden{ display:none; }
+
+.placeholder{
+    color:#777;
+    font-style:italic;
+}
+</style>
+
+<script>
+/* PASSWORDS */
+const NOTICE_PASSWORD = "HELLO579";
+
+const HOMEWORK_PASSWORDS = {
+    Nursery:"1111", LKG:"2222", UKG:"3333",
+    Class1:"4444", Class2:"5555", Class3:"6666",
+    Class4:"7777", Class5:"8888", Class6:"9990",
+    Class7:"9991", Class8:"9992", Class9:"9993",
+    Class10:"9994"
+};
+
+/* NOTICE BOARD */
+function enableNoticeEdit(){
+    if(prompt("Enter Notice Board password:") !== NOTICE_PASSWORD){
+        alert("Incorrect password"); return;
+    }
+    document.getElementById("noticeText").removeAttribute("readonly");
+}
+
+function saveNotice(){
+    if(prompt("Re-enter password to save:") !== NOTICE_PASSWORD){
+        alert("Incorrect password"); return;
+    }
+    let t=document.getElementById("noticeText");
+    localStorage.setItem("school_notice",t.value);
+    t.setAttribute("readonly",true);
+    alert("Notice Saved & Locked");
+}
+
+/* HOMEWORK */
+function enableHomeworkEdit(cls){
+    if(prompt("Enter Homework password:") !== HOMEWORK_PASSWORDS[cls]){
+        alert("Incorrect password"); return;
+    }
+    document.getElementById(cls+"-hw").removeAttribute("readonly");
+}
+
+function saveHomework(cls){
+    if(prompt("Re-enter password to save:") !== HOMEWORK_PASSWORDS[cls]){
+        alert("Incorrect password"); return;
+    }
+    let t=document.getElementById(cls+"-hw");
+    localStorage.setItem(cls+"_homework",t.value);
+    t.setAttribute("readonly",true);
+    alert("Homework Saved & Locked");
+}
+
+function loadHomework(cls){
+    let d=localStorage.getItem(cls+"_homework");
+    if(d) document.getElementById(cls+"-hw").value=d;
+}
+
+/* DROPDOWNS */
+function showClass(){
+    let c=document.getElementById("classSelect").value;
+    document.querySelectorAll(".class-content").forEach(x=>x.classList.add("hidden"));
+    if(c) document.getElementById(c).classList.remove("hidden");
+}
+
+function showSub(c){
+    let s=document.getElementById(c+"-sub").value;
+    document.querySelectorAll("#"+c+" .sub-content").forEach(x=>x.classList.add("hidden"));
+    if(s) document.getElementById(c+"-"+s).classList.remove("hidden");
+}
+
+window.onload=function(){
+    let n=localStorage.getItem("school_notice");
+    if(n) document.getElementById("noticeText").value=n;
+};
+</script>
+</head>
+
+<body>
+
+<div class="school-header">
+    <h1>🏫 MAQBOOL GARDEN</h1>
+    <p>Academic Record Management System</p>
+</div>
+
+<!-- NOTICE BOARD -->
+<div class="notice-board">
+    <h3>📢 Notice Board</h3>
+    <textarea id="noticeText" readonly placeholder="No current notices"></textarea><br>
+    <button onclick="enableNoticeEdit()">Edit Notice</button>
+    <button onclick="saveNotice()">Save Notice</button>
+</div>
+
+<div class="main">
+
+<select id="classSelect" onchange="showClass()">
+<option value="">🎓 Select Class</option>
+<option>Nursery</option><option>LKG</option><option>UKG</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
+<option>Class10</option>
+</select>
+
+<script>
+const classes=[
+"Nursery","LKG","UKG","Class1","Class2","Class3","Class4","Class5",
+"Class6","Class7","Class8","Class9","Class10"
+];
+
+classes.forEach(c=>{
+document.write(`
+<div id="${c}" class="class-content hidden">
+<select id="${c}-sub" onchange="showSub('${c}')">
+<option value="">📂 Select Section</option>
+<option value="syllabus">📘 Syllabus</option>
+<option value="planner">Weekly Planner (Monday – Saturday)</option>
+<option value="homework">✍ Homework</option>
+</select>
+
+<div id="${c}-syllabus" class="section-box sub-content hidden">
+<h3>📘 Syllabus</h3>
+${c==="Class10"
+? "English, Mathematics, Science, Social Science, Hindi – Complete exam syllabus."
+: `<div class="placeholder">Syllabus will be updated here.</div>`}
+</div>
+
+<div id="${c}-planner" class="section-box sub-content hidden">
+<h3>Weekly Planner (Monday – Saturday)</h3>
+${c==="Class10"
+? "Monday to Saturday subject-wise planning and revision."
+: `<div class="placeholder">Weekly planner will be updated here.</div>`}
+</div>
+
+<div id="${c}-homework" class="section-box sub-content hidden">
+<h3>✍ Homework (Locked)</h3>
+<textarea id="${c}-hw" readonly onfocus="loadHomework('${c}')"></textarea><br>
+<button onclick="enableHomeworkEdit('${c}')">Edit Homework</button>
+<button onclick="saveHomework('${c}')">Save Homework</button>
+</div>
+</div>
+`);
+});
+</script>
+
+</div>
+
+</body>
+</html>
