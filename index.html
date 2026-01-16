@@ -2,240 +2,190 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MAQBOOL GARDEN | Academic Records</title>
+<title>MAQBOOL GARDEN</title>
 
 <style>
-:root{
-    --primary:#1e6fb8;
-    --secondary:#2ecc71;
-    --notice:#fff6d6;
-    --card:#ffffff;
-}
-
 body{
     margin:0;
-    font-family:"Segoe UI", Arial, sans-serif;
-    background:linear-gradient(135deg,#eaf4ff,#f7fff9);
+    font-family:Arial, sans-serif;
+    background:#f4f9ff;
 }
 
 /* HEADER */
-.school-header{
-    background:linear-gradient(135deg,#1e6fb8,#144a7d);
+header{
+    background:#1e6fb8;
     color:white;
-    padding:25px 15px;
+    padding:20px;
     text-align:center;
 }
 
-.school-header h1{
-    margin:0;
-    font-size:36px;
-    letter-spacing:2px;
+.school-logo{
+    width:120px;
+    max-width:40%;
+    height:auto;
+    display:block;
+    margin:0 auto 10px auto;
+}
+
+/* SECTIONS */
+section{
+    margin:20px;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2,h3{
+    margin-top:0;
+    color:#1e6fb8;
 }
 
 /* NOTICE BOARD */
 .notice-board{
-    background:var(--notice);
+    min-height:80px;
+    border:2px dashed #1e6fb8;
     padding:15px;
-    margin:15px;
-    border-left:6px solid var(--primary);
-    border-radius:8px;
 }
 
-.notice-board textarea{
-    width:100%;
-    height:80px;
-    padding:10px;
-    font-size:14px;
-    resize:none;
-}
-
-/* GENERAL */
-button{
-    margin-top:8px;
-    padding:8px 15px;
-    border:none;
-    border-radius:6px;
-    background:var(--secondary);
-    color:white;
-    cursor:pointer;
-}
-
-.main{ padding:20px; }
-
+/* DROPDOWNS */
 select{
-    width:100%;
-    padding:12px;
-    font-size:16px;
-    border-radius:8px;
-    border:2px solid var(--primary);
-    margin-bottom:15px;
-}
-
-.section-box{
-    background:var(--card);
-    padding:20px;
-    border-radius:12px;
-    margin-top:15px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.1);
-    border-left:6px solid var(--secondary);
-}
-
-textarea{
-    width:100%;
-    height:120px;
     padding:10px;
-    font-size:15px;
+    font-size:16px;
+    width:100%;
+    margin:10px 0;
 }
 
-.hidden{ display:none; }
+/* CONTENT */
+.content-box{
+    border-left:5px solid #2ecc71;
+    padding:15px;
+    margin-top:10px;
+    display:none;
+}
 
-.placeholder{
-    color:#777;
-    font-style:italic;
+/* HOMEWORK */
+.homework-board{
+    background:#fff6d6;
+    border-left:6px solid #f39c12;
+    padding:15px;
 }
 </style>
 
 <script>
-/* PASSWORDS */
-const NOTICE_PASSWORD = "HELLO579";
-
-const HOMEWORK_PASSWORDS = {
-    Nursery:"1111", LKG:"2222", UKG:"3333",
-    Class1:"4444", Class2:"5555", Class3:"6666",
-    Class4:"7777", Class5:"8888", Class6:"9990",
-    Class7:"9991", Class8:"9992", Class9:"9993",
-    Class10:"9994"
-};
-
-/* NOTICE BOARD */
-function enableNoticeEdit(){
-    if(prompt("Enter Notice Board password:") !== NOTICE_PASSWORD){
-        alert("Incorrect password"); return;
-    }
-    document.getElementById("noticeText").removeAttribute("readonly");
+function showDirective(){
+    let d = document.getElementById("directiveSelect").value;
+    document.getElementById("syllabusSection").style.display = "none";
+    document.getElementById("plannerSection").style.display = "none";
+    if(d) document.getElementById(d).style.display = "block";
 }
 
-function saveNotice(){
-    if(prompt("Re-enter password to save:") !== NOTICE_PASSWORD){
-        alert("Incorrect password"); return;
-    }
-    let t=document.getElementById("noticeText");
-    localStorage.setItem("school_notice",t.value);
-    t.setAttribute("readonly",true);
-    alert("Notice Saved & Locked");
+function showClass(type){
+    let cls = document.getElementById(type+"Class").value;
+    document.querySelectorAll("."+type+"Content")
+        .forEach(c => c.style.display="none");
+    if(cls) document.getElementById(type+cls).style.display="block";
 }
-
-/* HOMEWORK */
-function enableHomeworkEdit(cls){
-    if(prompt("Enter Homework password:") !== HOMEWORK_PASSWORDS[cls]){
-        alert("Incorrect password"); return;
-    }
-    document.getElementById(cls+"-hw").removeAttribute("readonly");
-}
-
-function saveHomework(cls){
-    if(prompt("Re-enter password to save:") !== HOMEWORK_PASSWORDS[cls]){
-        alert("Incorrect password"); return;
-    }
-    let t=document.getElementById(cls+"-hw");
-    localStorage.setItem(cls+"_homework",t.value);
-    t.setAttribute("readonly",true);
-    alert("Homework Saved & Locked");
-}
-
-function loadHomework(cls){
-    let d=localStorage.getItem(cls+"_homework");
-    if(d) document.getElementById(cls+"-hw").value=d;
-}
-
-/* DROPDOWNS */
-function showClass(){
-    let c=document.getElementById("classSelect").value;
-    document.querySelectorAll(".class-content").forEach(x=>x.classList.add("hidden"));
-    if(c) document.getElementById(c).classList.remove("hidden");
-}
-
-function showSub(c){
-    let s=document.getElementById(c+"-sub").value;
-    document.querySelectorAll("#"+c+" .sub-content").forEach(x=>x.classList.add("hidden"));
-    if(s) document.getElementById(c+"-"+s).classList.remove("hidden");
-}
-
-window.onload=function(){
-    let n=localStorage.getItem("school_notice");
-    if(n) document.getElementById("noticeText").value=n;
-};
 </script>
-</head>
 
+</head>
 <body>
 
-<div class="school-header">
-    <h1>🏫 MAQBOOL GARDEN</h1>
-    <p>Academic Record Management System</p>
-</div>
+<!-- HEADER -->
+<header>
+    <img src="logo.jpg" alt="Maqbool Garden Logo" class="school-logo">
+    <h1>MAQBOOL GARDEN</h1>
+</header>
 
 <!-- NOTICE BOARD -->
-<div class="notice-board">
-    <h3>📢 Notice Board</h3>
-    <textarea id="noticeText" readonly placeholder="No current notices"></textarea><br>
-    <button onclick="enableNoticeEdit()">Edit Notice</button>
-    <button onclick="saveNotice()">Save Notice</button>
-</div>
+<section>
+    <h2>Notice Board</h2>
+    <div class="notice-board">
+        School will remain closed on Sunday.<br>
+        Unit Test for Classes 6–9 will start next week.
+    </div>
+</section>
 
-<div class="main">
+<!-- DIRECTIVES -->
+<section>
+    <h2>Directives</h2>
 
-<select id="classSelect" onchange="showClass()">
-<option value="">🎓 Select Class</option>
-<option>Nursery</option><option>LKG</option><option>UKG</option>
-<option>Class1</option><option>Class2</option><option>Class3</option>
-<option>Class4</option><option>Class5</option><option>Class6</option>
-<option>Class7</option><option>Class8</option><option>Class9</option>
-<option>Class10</option>
-</select>
+    <select id="directiveSelect" onchange="showDirective()">
+        <option value="">Select</option>
+        <option value="syllabusSection">Syllabus</option>
+        <option value="plannerSection">Weekly Planner</option>
+    </select>
 
-<script>
-const classes=[
-"Nursery","LKG","UKG","Class1","Class2","Class3","Class4","Class5",
-"Class6","Class7","Class8","Class9","Class10"
-];
+    <!-- SYLLABUS -->
+    <div id="syllabusSection" style="display:none;">
+        <h3>Syllabus (Class 1 – 9)</h3>
 
-classes.forEach(c=>{
-document.write(`
-<div id="${c}" class="class-content hidden">
-<select id="${c}-sub" onchange="showSub('${c}')">
-<option value="">📂 Select Section</option>
-<option value="syllabus">📘 Syllabus</option>
-<option value="planner">Weekly Planner (Monday – Saturday)</option>
-<option value="homework">✍ Homework</option>
-</select>
+        <select id="syllabusClass" onchange="showClass('syllabus')">
+            <option value="">Select Class</option>
+            <option>Class1</option><option>Class2</option><option>Class3</option>
+            <option>Class4</option><option>Class5</option><option>Class6</option>
+            <option>Class7</option><option>Class8</option><option>Class9</option>
+        </select>
 
-<div id="${c}-syllabus" class="section-box sub-content hidden">
-<h3>📘 Syllabus</h3>
-${c==="Class10"
-? "English, Mathematics, Science, Social Science, Hindi – Complete exam syllabus."
-: `<div class="placeholder">Syllabus will be updated here.</div>`}
-</div>
+        <!-- CLASS 9 DETAILED SYLLABUS -->
+        <div id="syllabusClass9" class="content-box syllabusContent">
+            <b>English:</b> Beehive (Prose & Poems), Moments, Grammar, Writing Skills<br><br>
+            <b>Mathematics:</b> Number Systems, Polynomials, Linear Equations in Two Variables,
+            Coordinate Geometry, Triangles, Quadrilaterals, Circles,
+            Surface Areas & Volumes, Statistics, Probability<br><br>
+            <b>Science:</b> Matter in Our Surroundings, Atoms & Molecules,
+            Structure of Atom, Cell – Structure & Function, Tissues,
+            Motion, Force & Laws of Motion, Gravitation,
+            Work & Energy, Sound, Natural Resources<br><br>
+            <b>Social Science:</b> History (French Revolution),
+            Geography (Physical Features of India),
+            Civics (Democracy),
+            Economics (Poverty as a Challenge)<br><br>
+            <b>Hindi:</b> Kshitij, Kritika, Grammar, Writing Skills
+        </div>
+    </div>
 
-<div id="${c}-planner" class="section-box sub-content hidden">
-<h3>Weekly Planner (Monday – Saturday)</h3>
-${c==="Class10"
-? "Monday to Saturday subject-wise planning and revision."
-: `<div class="placeholder">Weekly planner will be updated here.</div>`}
-</div>
+    <!-- WEEKLY PLANNER -->
+    <div id="plannerSection" style="display:none;">
+        <h3>Weekly Planner (Class 1 – 9)</h3>
 
-<div id="${c}-homework" class="section-box sub-content hidden">
-<h3>✍ Homework (Locked)</h3>
-<textarea id="${c}-hw" readonly onfocus="loadHomework('${c}')"></textarea><br>
-<button onclick="enableHomeworkEdit('${c}')">Edit Homework</button>
-<button onclick="saveHomework('${c}')">Save Homework</button>
-</div>
-</div>
-`);
-});
-</script>
+        <select id="plannerClass" onchange="showClass('planner')">
+            <option value="">Select Class</option>
+            <option>Class1</option><option>Class2</option><option>Class3</option>
+            <option>Class4</option><option>Class5</option><option>Class6</option>
+            <option>Class7</option><option>Class8</option><option>Class9</option>
+        </select>
 
-</div>
+        <!-- CLASS 9 DETAILED PLANNER -->
+        <div id="plannerClass9" class="content-box plannerContent">
+            <b>Monday:</b> Maths – Polynomials | English – Prose<br>
+            <b>Tuesday:</b> Science – Motion | Hindi – Grammar<br>
+            <b>Wednesday:</b> Social Science – History | Maths – Practice Problems<br>
+            <b>Thursday:</b> Science – Gravitation (Numericals) | English – Writing Skills<br>
+            <b>Friday:</b> Maths – Linear Equations | Hindi – Literature<br>
+            <b>Saturday:</b> Revision, Doubt Clearing & Test Preparation
+        </div>
+    </div>
+
+</section>
+
+<!-- HOMEWORK -->
+<section>
+    <h2>Homework</h2>
+    <div class="homework-board">
+        <b>Date: 16 January 2026</b><br><br>
+
+        <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
+        <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
+        <b>Class 3:</b> English – Paragraph writing | Maths – Tables | EVS – Food<br><br>
+        <b>Class 4:</b> English – Grammar | Maths – Fractions | Science – Matter<br><br>
+        <b>Class 5:</b> English – Letter writing | Maths – Decimals | Science – Human Body<br><br>
+        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Components of Food<br><br>
+        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition in Plants<br><br>
+        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force & Pressure<br><br>
+        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials (Ex 2.2) | Science – Motion
+    </div>
+</section>
 
 </body>
 </html>
