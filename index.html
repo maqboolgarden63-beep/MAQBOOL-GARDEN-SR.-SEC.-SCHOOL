@@ -22,50 +22,17 @@ header{
     text-align:center;
 }
 
-/* ===== SCHOOL NAME FRAME ===== */
+/* ===== SCHOOL NAME FRAME (CLEAN) ===== */
 .school-name-frame{
-    position:relative;
     display:inline-block;
     padding:28px 40px;
-    border:5px solid #ff9800; /* ORANGE FRAME */
+    border:5px solid #ff9800; /* orange outline */
     border-radius:28px;
-
-    background:
-        linear-gradient(135deg,#e6f1ff,#d4e7ff),
-        repeating-linear-gradient(
-            45deg,
-            rgba(11,28,61,0.18) 0px,
-            rgba(11,28,61,0.18) 2px,
-            transparent 2px,
-            transparent 22px
-        );
-}
-
-/* ===== ACADEMIC ICONS LAYER ===== */
-.school-name-frame::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:
-        url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'>\
-<g fill='none' stroke='%230b1c3d' stroke-width='5' opacity='0.25'>\
-<path d='M40 220 L130 40 L220 220'/>\
-<circle cx='130' cy='90' r='18'/>\
-<path d='M170 40 L170 110 L210 220 L130 220 L170 110'/>\
-<rect x='30' y='60' width='22' height='160'/>\
-</g>\
-</svg>");
-    background-repeat:repeat;
-    background-size:180px 180px;
-    border-radius:28px;
-    z-index:0;
+    background:linear-gradient(135deg,#e6f1ff,#d4e7ff);
 }
 
 /* ===== SCHOOL NAME ===== */
 header h1{
-    position:relative;
-    z-index:1;
     font-size:90px;
     margin:0;
     color:#0b1c3d;
