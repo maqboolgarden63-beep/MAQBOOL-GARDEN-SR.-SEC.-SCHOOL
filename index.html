@@ -9,7 +9,7 @@
 body{
     margin:0;
     font-family:"Segoe UI", Arial, sans-serif;
-    background:linear-gradient(#eef5ff,#f9fcff);
+    background:#87ceeb;              /* light sky blue */
     font-size:40px;
     line-height:1.8;
     color:#1f2d3d;
@@ -17,7 +17,7 @@ body{
 
 /* ===== HEADER ===== */
 header{
-    background:#0b1c3d;
+    background:#0b1c3d;              /* navy strip */
     padding:55px 20px;
     text-align:center;
 }
@@ -28,13 +28,13 @@ header{
     padding:28px 40px;
     border:5px solid #ffff00;
     border-radius:28px;
-    background:#f9fffb;   /* ✅ matched with weekly planner bg */
+    background:#0b1c3d;              /* navy blue */
 }
 
 header h1{
     font-size:90px;
     margin:0;
-    color:#ffff00;
+    color:#ffff00;                   /* yellow */
     font-weight:700;
     letter-spacing:1px;
 }
@@ -93,7 +93,7 @@ h3{
     background:linear-gradient(#155a96,#0f4675);
 }
 
-/* ===== DROPDOWNS (ENHANCED LOOK) ===== */
+/* ===== DROPDOWNS ===== */
 select{
     padding:26px 70px 26px 26px;
     font-size:40px;
@@ -160,7 +160,6 @@ function showClass(type){
     if(cls) document.getElementById(type+cls).style.display="block";
 }
 
-/* Auto-updating date */
 window.onload = function(){
     const today = new Date();
     const options = { day:'numeric', month:'long', year:'numeric' };
@@ -177,87 +176,6 @@ window.onload = function(){
         <h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
     </div>
 </header>
-
-<!-- NOTICE BOARD -->
-<section>
-    <h2>📢 Notice Board</h2>
-    <div class="notice-board">
-        School will remain closed on Sunday.<br>
-        Unit Test for Classes 6–9 will start next week.
-    </div>
-</section>
-
-<!-- DIRECTIVES -->
-<section>
-    <h2>📘 Academic Directives</h2>
-
-    <div class="directive-buttons">
-        <button onclick="showSection('syllabusSection')">📚 Syllabus</button>
-        <button onclick="showSection('plannerSection')">Weekly Planner</button>
-    </div>
-
-    <!-- SYLLABUS -->
-    <div id="syllabusSection" style="display:none;">
-        <h3>📚 Syllabus (Class 1 – 9)</h3>
-
-        <select id="syllabusClass" onchange="showClass('syllabus')">
-            <option value="">Select Class</option>
-            <option>Class1</option><option>Class2</option><option>Class3</option>
-            <option>Class4</option><option>Class5</option><option>Class6</option>
-            <option>Class7</option><option>Class8</option><option>Class9</option>
-        </select>
-
-        <div id="syllabusClass9" class="content-box syllabusContent">
-            <b>English:</b> Beehive, Moments, Grammar, Writing Skills<br><br>
-            <b>Mathematics:</b> Number Systems, Polynomials, Linear Equations,
-            Triangles, Circles, Surface Areas & Volumes, Statistics<br><br>
-            <b>Science:</b> Matter, Atoms & Molecules, Cell, Motion,
-            Gravitation, Work & Energy, Sound<br><br>
-            <b>Social Science:</b> History, Geography, Civics, Economics<br><br>
-            <b>Hindi:</b> Kshitij, Kritika, Grammar, Writing
-        </div>
-    </div>
-
-    <!-- WEEKLY PLANNER -->
-    <div id="plannerSection" style="display:none;">
-        <h3>Weekly Planner</h3>
-        <div class="date-tag">Week starting: <span class="auto-date"></span></div>
-
-        <select id="plannerClass" onchange="showClass('planner')">
-            <option value="">Select Class</option>
-            <option>Class1</option><option>Class2</option><option>Class3</option>
-            <option>Class4</option><option>Class5</option><option>Class6</option>
-            <option>Class7</option><option>Class8</option><option>Class9</option>
-        </select>
-
-        <div id="plannerClass9" class="content-box plannerContent">
-            <b>Monday:</b> Maths – Polynomials | English – Prose<br>
-            <b>Tuesday:</b> Science – Motion | Hindi – Grammar<br>
-            <b>Wednesday:</b> SST – History | Maths – Practice<br>
-            <b>Thursday:</b> Science – Gravitation | English – Writing<br>
-            <b>Friday:</b> Maths – Linear Equations | Hindi – Literature<br>
-            <b>Saturday:</b> Revision & Test Preparation
-        </div>
-    </div>
-</section>
-
-<!-- HOMEWORK -->
-<section>
-    <h2>📝 Homework</h2>
-    <div class="homework-board">
-        <b>Date:</b> <span class="auto-date"></span><br><br>
-
-        <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
-        <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
-        <b>Class 3:</b> English – Paragraph | Maths – Tables | EVS – Food<br><br>
-        <b>Class 4:</b> English – Grammar | Maths – Fractions | Science – Matter<br><br>
-        <b>Class 5:</b> English – Letter writing | Maths – Decimals | Science – Human Body<br><br>
-        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Food Components<br><br>
-        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition<br><br>
-        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force<br><br>
-        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials | Science – Motion
-    </div>
-</section>
 
 </body>
 </html>
