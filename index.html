@@ -5,60 +5,104 @@
 <title>MAQBOOL GARDEN</title>
 
 <style>
+/* GLOBAL */
 body{
     margin:0;
     font-family:Arial, sans-serif;
     background:#f4f9ff;
+    font-size:18px;           /* 🔍 Base font increased */
+    line-height:1.6;
 }
 
+/* HEADER */
 header{
     background:#1e6fb8;
     color:white;
-    padding:20px;
+    padding:30px 15px;
     text-align:center;
 }
 
+header h1{
+    font-size:32px;           /* 🔍 Bigger title */
+    margin:0;
+}
+
+/* SECTIONS */
 section{
-    margin:20px;
+    margin:15px;
     background:white;
     padding:20px;
-    border-radius:8px;
+    border-radius:10px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
-h2,h3{
+h2{
+    font-size:26px;           /* 🔍 */
     margin-top:0;
+    color:#1e6fb8;
+}
+
+h3{
+    font-size:22px;           /* 🔍 */
     color:#1e6fb8;
 }
 
 /* NOTICE BOARD */
 .notice-board{
-    min-height:80px;
+    min-height:100px;
     border:2px dashed #1e6fb8;
-    padding:15px;
+    padding:18px;
+    font-size:18px;
 }
 
 /* DROPDOWNS */
 select{
-    padding:10px;
-    font-size:16px;
+    padding:14px;
+    font-size:18px;
     width:100%;
-    margin:10px 0;
+    margin:12px 0;
+    border-radius:6px;
 }
 
 /* CONTENT */
 .content-box{
-    border-left:5px solid #2ecc71;
-    padding:15px;
-    margin-top:10px;
+    border-left:6px solid #2ecc71;
+    padding:18px;
+    margin-top:14px;
     display:none;
+    font-size:18px;
 }
 
 /* HOMEWORK */
 .homework-board{
     background:#fff6d6;
     border-left:6px solid #f39c12;
-    padding:15px;
+    padding:18px;
+    font-size:18px;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 600px){
+    body{
+        font-size:19px;
+    }
+
+    header h1{
+        font-size:34px;
+    }
+
+    h2{
+        font-size:28px;
+    }
+
+    h3{
+        font-size:23px;
+    }
+
+    select{
+        font-size:19px;
+        padding:16px;
+    }
 }
 </style>
 
@@ -152,7 +196,17 @@ function showClass(type){
 <section>
     <h2>Homework</h2>
     <div class="homework-board">
-        [ https://docs.google.com/spreadsheets/d/1FEXHYZ5xw9biHJNzyjSZGtWfIko3_UMrattRLSDHJCw/edit?usp=drivesdk ]
+        <b>Date: 16 January 2026</b><br><br>
+
+        <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
+        <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
+        <b>Class 3:</b> English – Paragraph | Maths – Tables | EVS – Food<br><br>
+        <b>Class 4:</b> English – Grammar | Maths – Fractions | Science – Matter<br><br>
+        <b>Class 5:</b> English – Letter writing | Maths – Decimals | Science – Human Body<br><br>
+        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Food Components<br><br>
+        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition<br><br>
+        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force<br><br>
+        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials | Science – Motion
     </div>
 </section>
 
