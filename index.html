@@ -26,39 +26,51 @@ header{
 .school-name-frame{
     position:relative;
     display:inline-block;
-    padding:32px 44px;
-    border:5px solid #ffff00;
+    padding:28px 40px;
+    border:5px solid #ff9800; /* ORANGE FRAME */
     border-radius:28px;
 
     background:
         linear-gradient(135deg,#e6f1ff,#d4e7ff),
+        repeating-linear-gradient(
+            45deg,
+            rgba(11,28,61,0.18) 0px,
+            rgba(11,28,61,0.18) 2px,
+            transparent 2px,
+            transparent 22px
+        );
+}
+
+/* ===== ACADEMIC ICONS LAYER ===== */
+.school-name-frame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
         url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'>\
-<g fill='none' stroke='%230b1c3d' stroke-width='5' opacity='0.22'>\
-<!-- Compass -->\
+<g fill='none' stroke='%230b1c3d' stroke-width='5' opacity='0.25'>\
 <path d='M40 220 L130 40 L220 220'/>\
 <circle cx='130' cy='90' r='18'/>\
-<!-- Conical Flask -->\
 <path d='M170 40 L170 110 L210 220 L130 220 L170 110'/>\
-<!-- Ruler -->\
 <rect x='30' y='60' width='22' height='160'/>\
-<!-- Book -->\
-<path d='M70 140 Q100 120 130 140'/>\
 </g>\
 </svg>");
     background-repeat:repeat;
     background-size:180px 180px;
+    border-radius:28px;
+    z-index:0;
 }
 
 /* ===== SCHOOL NAME ===== */
 header h1{
+    position:relative;
+    z-index:1;
     font-size:90px;
     margin:0;
     color:#0b1c3d;
     font-weight:700;
     letter-spacing:1px;
-    position:relative;
-    z-index:1;
 }
 
 /* ===== SECTIONS ===== */
@@ -111,6 +123,10 @@ h3{
     cursor:pointer;
 }
 
+.directive-buttons button:hover{
+    background:linear-gradient(#155a96,#0f4675);
+}
+
 /* ===== DROPDOWNS ===== */
 select{
     padding:26px 70px 26px 26px;
@@ -122,6 +138,17 @@ select{
     border-radius:14px;
     border:3px solid #1e6fb8;
     background-color:#f8fbff;
+    appearance:none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #1e6fb8 50%),
+        linear-gradient(135deg, #1e6fb8 50%, transparent 50%),
+        linear-gradient(to right, #dbe9f9, #dbe9f9);
+    background-position:
+        calc(100% - 30px) calc(50% - 6px),
+        calc(100% - 22px) calc(50% - 6px),
+        calc(100% - 60px) 50%;
+    background-size:10px 10px,10px 10px,2px 55%;
+    background-repeat:no-repeat;
 }
 
 /* ===== CONTENT BOX ===== */
@@ -148,6 +175,28 @@ select{
 }
 </style>
 
+<script>
+function showSection(id){
+    document.getElementById("syllabusSection").style.display="none";
+    document.getElementById("plannerSection").style.display="none";
+    document.getElementById(id).style.display="block";
+}
+
+function showClass(type){
+    let cls=document.getElementById(type+"Class").value;
+    document.querySelectorAll("."+type+"Content")
+        .forEach(c=>c.style.display="none");
+    if(cls) document.getElementById(type+cls).style.display="block";
+}
+
+window.onload=function(){
+    const today=new Date();
+    const options={day:'numeric',month:'long',year:'numeric'};
+    document.querySelectorAll(".auto-date")
+        .forEach(el=>el.innerText=today.toLocaleDateString("en-IN",options));
+};
+</script>
+
 </head>
 <body>
 
@@ -156,6 +205,87 @@ select{
         <h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
     </div>
 </header>
+
+<!-- NOTICE BOARD -->
+<section>
+    <h2>📢 Notice Board</h2>
+    <div class="notice-board">
+        School will remain closed on Sunday.<br>
+        Unit Test for Classes 6–9 will start next week.
+    </div>
+</section>
+
+<!-- DIRECTIVES -->
+<section>
+    <h2>📘 Academic Directives</h2>
+
+    <div class="directive-buttons">
+        <button onclick="showSection('syllabusSection')">📚 Syllabus</button>
+        <button onclick="showSection('plannerSection')">Weekly Planner</button>
+    </div>
+
+    <!-- SYLLABUS -->
+    <div id="syllabusSection" style="display:none;">
+        <h3>📚 Syllabus (Class 1 – 9)</h3>
+
+        <select id="syllabusClass" onchange="showClass('syllabus')">
+            <option value="">Select Class</option>
+            <option>Class1</option><option>Class2</option><option>Class3</option>
+            <option>Class4</option><option>Class5</option><option>Class6</option>
+            <option>Class7</option><option>Class8</option><option>Class9</option>
+        </select>
+
+        <div id="syllabusClass9" class="content-box syllabusContent">
+            <b>English:</b> Beehive, Moments, Grammar, Writing Skills<br><br>
+            <b>Mathematics:</b> Number Systems, Polynomials, Linear Equations,
+            Triangles, Circles, Surface Areas & Volumes, Statistics<br><br>
+            <b>Science:</b> Matter, Atoms & Molecules, Cell, Motion,
+            Gravitation, Work & Energy, Sound<br><br>
+            <b>Social Science:</b> History, Geography, Civics, Economics<br><br>
+            <b>Hindi:</b> Kshitij, Kritika, Grammar, Writing
+        </div>
+    </div>
+
+    <!-- WEEKLY PLANNER -->
+    <div id="plannerSection" style="display:none;">
+        <h3>Weekly Planner</h3>
+        <div class="date-tag">Week starting: <span class="auto-date"></span></div>
+
+        <select id="plannerClass" onchange="showClass('planner')">
+            <option value="">Select Class</option>
+            <option>Class1</option><option>Class2</option><option>Class3</option>
+            <option>Class4</option><option>Class5</option><option>Class6</option>
+            <option>Class7</option><option>Class8</option><option>Class9</option>
+        </select>
+
+        <div id="plannerClass9" class="content-box plannerContent">
+            <b>Monday:</b> Maths – Polynomials | English – Prose<br>
+            <b>Tuesday:</b> Science – Motion | Hindi – Grammar<br>
+            <b>Wednesday:</b> SST – History | Maths – Practice<br>
+            <b>Thursday:</b> Science – Gravitation | English – Writing<br>
+            <b>Friday:</b> Maths – Linear Equations | Hindi – Literature<br>
+            <b>Saturday:</b> Revision & Test Preparation
+        </div>
+    </div>
+</section>
+
+<!-- HOMEWORK -->
+<section>
+    <h2>📝 Homework</h2>
+    <div class="homework-board">
+        <b>Date:</b> <span class="auto-date"></span><br><br>
+
+        <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
+        <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
+        <b>Class 3:</b> English – Paragraph | Maths – Tables | EVS – Food<br><br>
+        <b>Class 4:</b> English – Grammar | Maths – Fractions | Science – Matter<br><br>
+        <b>Class 5:</b> English – Letter writing | Maths – Decimals | Science – Human Body<br><br>
+        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Food Components<br><br>
+        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition<br><br>
+        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force<br><br>
+        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials | Science – Motion
+    </div>
+</section>
 
 </body>
 </html>
