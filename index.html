@@ -5,20 +5,21 @@
 <title>MAQBOOL GARDEN SR. SEC. SCHOOL</title>
 
 <style>
-/* GLOBAL */
+/* ===== GLOBAL ===== */
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f9ff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:linear-gradient(#eef5ff, #f9fcff);
     font-size:40px;
     line-height:1.8;
+    color:#1f2d3d;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header{
-    background:#1e6fb8;
+    background:linear-gradient(135deg, #1e6fb8, #2c8ed6);
     color:white;
-    padding:40px 20px;
+    padding:45px 20px;
     text-align:center;
 }
 
@@ -27,17 +28,23 @@ header h1{
     margin:0;
 }
 
-/* SECTIONS */
+header .school-icon{
+    font-size:64px;
+    display:block;
+    margin-bottom:10px;
+}
+
+/* ===== SECTIONS ===== */
 section{
-    margin:20px auto;
+    margin:25px auto;
     background:white;
-    padding:30px;
-    border-radius:14px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    padding:35px;
+    border-radius:16px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
     max-width:840px;
 }
 
-/* HEADINGS */
+/* ===== HEADINGS ===== */
 h2{
     font-size:48px;
     margin-top:0;
@@ -46,63 +53,73 @@ h2{
 
 h3{
     font-size:42px;
-    color:#1e6fb8;
+    color:#2c7be5;
 }
 
-/* NOTICE BOARD */
+/* ===== NOTICE BOARD ===== */
 .notice-board{
     min-height:150px;
     border:3px dashed #1e6fb8;
     padding:28px;
+    background:#f4f9ff;
 }
 
-/* DIRECTIVE BUTTONS */
+/* ===== DIRECTIVE BUTTONS ===== */
 .directive-buttons{
     display:flex;
-    gap:20px;
+    gap:22px;
     justify-content:center;
-    margin:25px 0;
+    margin:30px 0;
 }
 
 .directive-buttons button{
     flex:1;
-    padding:22px;
+    padding:26px;
     font-size:40px;
     border:none;
-    border-radius:12px;
-    background:#1e6fb8;
+    border-radius:14px;
+    background:linear-gradient(#1e6fb8,#155a96);
     color:white;
     cursor:pointer;
 }
 
 .directive-buttons button:hover{
-    background:#155a96;
+    background:linear-gradient(#155a96,#0f4675);
 }
 
-/* DROPDOWNS */
+/* ===== DROPDOWNS ===== */
 select{
-    padding:24px;
+    padding:26px;
     font-size:40px;
     width:100%;
     max-width:640px;
     display:block;
-    margin:20px auto;
-    border-radius:8px;
+    margin:24px auto;
+    border-radius:10px;
+    border:2px solid #c7ddf4;
 }
 
-/* CONTENT */
+/* ===== CONTENT BOX ===== */
 .content-box{
     border-left:8px solid #2ecc71;
-    padding:28px;
-    margin-top:22px;
+    padding:30px;
+    margin-top:24px;
     display:none;
+    background:#f9fffb;
 }
 
-/* HOMEWORK */
+/* ===== HOMEWORK ===== */
 .homework-board{
-    background:#fff6d6;
+    background:#fff8e1;
     border-left:8px solid #f39c12;
-    padding:28px;
+    padding:30px;
+}
+
+/* ===== DATE TAG ===== */
+.date-tag{
+    font-size:36px;
+    color:#444;
+    margin-bottom:18px;
 }
 </style>
 
@@ -119,18 +136,27 @@ function showClass(type){
         .forEach(c => c.style.display="none");
     if(cls) document.getElementById(type+cls).style.display="block";
 }
+
+/* Auto-updating date */
+window.onload = function(){
+    const today = new Date();
+    const options = { day:'numeric', month:'long', year:'numeric' };
+    document.querySelectorAll(".auto-date")
+        .forEach(el => el.innerText = today.toLocaleDateString("en-IN", options));
+};
 </script>
 
 </head>
 <body>
 
 <header>
+    <span class="school-icon">🎓</span>
     <h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
 </header>
 
 <!-- NOTICE BOARD -->
 <section>
-    <h2>Notice Board</h2>
+    <h2>📢 Notice Board</h2>
     <div class="notice-board">
         School will remain closed on Sunday.<br>
         Unit Test for Classes 6–9 will start next week.
@@ -139,16 +165,16 @@ function showClass(type){
 
 <!-- DIRECTIVES -->
 <section>
-    <h2>Directives</h2>
+    <h2>📘 Academic Directives</h2>
 
     <div class="directive-buttons">
-        <button onclick="showSection('syllabusSection')">Syllabus</button>
-        <button onclick="showSection('plannerSection')">Weekly Planner</button>
+        <button onclick="showSection('syllabusSection')">📚 Syllabus</button>
+        <button onclick="showSection('plannerSection')">📅 Weekly Planner</button>
     </div>
 
     <!-- SYLLABUS -->
     <div id="syllabusSection" style="display:none;">
-        <h3>Syllabus (Class 1 – 9)</h3>
+        <h3>📚 Syllabus (Class 1 – 9)</h3>
 
         <select id="syllabusClass" onchange="showClass('syllabus')">
             <option value="">Select Class</option>
@@ -170,7 +196,8 @@ function showClass(type){
 
     <!-- WEEKLY PLANNER -->
     <div id="plannerSection" style="display:none;">
-        <h3>Weekly Planner (Class 1 – 9)</h3>
+        <h3>📅 Weekly Planner</h3>
+        <div class="date-tag">Week starting: <span class="auto-date"></span></div>
 
         <select id="plannerClass" onchange="showClass('planner')">
             <option value="">Select Class</option>
@@ -192,9 +219,9 @@ function showClass(type){
 
 <!-- HOMEWORK -->
 <section>
-    <h2>Homework</h2>
+    <h2>📝 Homework</h2>
     <div class="homework-board">
-        <b>Date: 16 January 2026</b><br><br>
+        <b>Date:</b> <span class="auto-date"></span><br><br>
 
         <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
         <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
