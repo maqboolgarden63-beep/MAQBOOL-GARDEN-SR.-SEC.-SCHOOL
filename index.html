@@ -19,12 +19,11 @@ header{
     text-align:center;
 }
 
+/* SVG LOGO */
 .school-logo{
     width:120px;
-    max-width:40%;
-    height:auto;
-    display:block;
     margin:0 auto 10px auto;
+    display:block;
 }
 
 /* SECTIONS */
@@ -87,14 +86,31 @@ function showClass(type){
     if(cls) document.getElementById(type+cls).style.display="block";
 }
 </script>
-
 </head>
+
 <body>
 
-<!-- HEADER -->
+<!-- HEADER WITH EMBEDDED SVG LOGO -->
 <header>
-    <img src="logo.jpg" alt="Maqbool Garden Logo" class="school-logo">
-    <h1>MAQBOOL GARDEN</h1>
+
+<svg class="school-logo" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#1e6fb8" stroke-width="6"/>
+    <text x="100" y="85" text-anchor="middle"
+          font-size="20" font-weight="bold" fill="#1e6fb8">
+        MAQBOOL
+    </text>
+    <text x="100" y="115" text-anchor="middle"
+          font-size="20" font-weight="bold" fill="#1e6fb8">
+        GARDEN
+    </text>
+    <line x1="40" y1="130" x2="160" y2="130" stroke="#1e6fb8" stroke-width="2"/>
+    <text x="100" y="155" text-anchor="middle"
+          font-size="12" fill="#1e6fb8">
+        EDUCATION
+    </text>
+</svg>
+
+<h1>MAQBOOL GARDEN</h1>
 </header>
 
 <!-- NOTICE BOARD -->
@@ -127,21 +143,14 @@ function showClass(type){
             <option>Class7</option><option>Class8</option><option>Class9</option>
         </select>
 
-        <!-- CLASS 9 DETAILED SYLLABUS -->
         <div id="syllabusClass9" class="content-box syllabusContent">
-            <b>English:</b> Beehive (Prose & Poems), Moments, Grammar, Writing Skills<br><br>
-            <b>Mathematics:</b> Number Systems, Polynomials, Linear Equations in Two Variables,
-            Coordinate Geometry, Triangles, Quadrilaterals, Circles,
-            Surface Areas & Volumes, Statistics, Probability<br><br>
-            <b>Science:</b> Matter in Our Surroundings, Atoms & Molecules,
-            Structure of Atom, Cell – Structure & Function, Tissues,
-            Motion, Force & Laws of Motion, Gravitation,
-            Work & Energy, Sound, Natural Resources<br><br>
-            <b>Social Science:</b> History (French Revolution),
-            Geography (Physical Features of India),
-            Civics (Democracy),
-            Economics (Poverty as a Challenge)<br><br>
-            <b>Hindi:</b> Kshitij, Kritika, Grammar, Writing Skills
+            <b>English:</b> Beehive, Moments, Grammar, Writing Skills<br><br>
+            <b>Mathematics:</b> Polynomials, Linear Equations, Triangles, Circles,
+            Surface Areas & Volumes, Statistics<br><br>
+            <b>Science:</b> Matter, Atoms & Molecules, Cell, Motion,
+            Gravitation, Work & Energy, Sound<br><br>
+            <b>Social Science:</b> History, Geography, Civics, Economics<br><br>
+            <b>Hindi:</b> Kshitij, Kritika, Grammar, Writing
         </div>
     </div>
 
@@ -156,17 +165,15 @@ function showClass(type){
             <option>Class7</option><option>Class8</option><option>Class9</option>
         </select>
 
-        <!-- CLASS 9 DETAILED PLANNER -->
         <div id="plannerClass9" class="content-box plannerContent">
             <b>Monday:</b> Maths – Polynomials | English – Prose<br>
             <b>Tuesday:</b> Science – Motion | Hindi – Grammar<br>
-            <b>Wednesday:</b> Social Science – History | Maths – Practice Problems<br>
-            <b>Thursday:</b> Science – Gravitation (Numericals) | English – Writing Skills<br>
+            <b>Wednesday:</b> SST – History | Maths – Practice<br>
+            <b>Thursday:</b> Science – Gravitation | English – Writing<br>
             <b>Friday:</b> Maths – Linear Equations | Hindi – Literature<br>
-            <b>Saturday:</b> Revision, Doubt Clearing & Test Preparation
+            <b>Saturday:</b> Revision & Test Preparation
         </div>
     </div>
-
 </section>
 
 <!-- HOMEWORK -->
@@ -175,15 +182,15 @@ function showClass(type){
     <div class="homework-board">
         <b>Date: 16 January 2026</b><br><br>
 
-        <b>Class 1:</b> English – Alphabet writing | Maths – Counting | EVS – Plants<br><br>
+        <b>Class 1:</b> English – Alphabet | Maths – Counting | EVS – Plants<br><br>
         <b>Class 2:</b> English – Reading | Maths – Addition | EVS – Water<br><br>
-        <b>Class 3:</b> English – Paragraph writing | Maths – Tables | EVS – Food<br><br>
+        <b>Class 3:</b> English – Paragraph | Maths – Tables | EVS – Food<br><br>
         <b>Class 4:</b> English – Grammar | Maths – Fractions | Science – Matter<br><br>
         <b>Class 5:</b> English – Letter writing | Maths – Decimals | Science – Human Body<br><br>
-        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Components of Food<br><br>
-        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition in Plants<br><br>
-        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force & Pressure<br><br>
-        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials (Ex 2.2) | Science – Motion
+        <b>Class 6:</b> English – Vocabulary | Maths – Integers | Science – Food Components<br><br>
+        <b>Class 7:</b> English – Writing | Maths – Algebra | Science – Nutrition<br><br>
+        <b>Class 8:</b> English – Grammar | Maths – Linear Equations | Science – Force<br><br>
+        <b>Class 9:</b> English – Beehive Ch-1 | Maths – Polynomials | Science – Motion
     </div>
 </section>
 
