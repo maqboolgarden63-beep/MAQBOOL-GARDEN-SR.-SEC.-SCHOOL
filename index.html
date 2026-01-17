@@ -8,8 +8,8 @@
 /* ===== GLOBAL ===== */
 body{
     margin:0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:linear-gradient(#eef5ff, #f9fcff);
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:linear-gradient(#eef5ff,#f9fcff);
     font-size:40px;
     line-height:1.8;
     color:#1f2d3d;
@@ -17,22 +17,17 @@ body{
 
 /* ===== HEADER ===== */
 header{
-    background:linear-gradient(135deg, #1e6fb8, #2c8ed6);
-    color:white;
-    padding:45px 20px;
+    background:#0b1c3d;              /* navy blue */
+    padding:55px 20px;
     text-align:center;
 }
 
 header h1{
-    font-size:60px;
+    font-size:90px;                  /* 🔍 1.5× increase */
     margin:0;
-}
-
-/* 🔍 School icon 2× */
-header .school-icon{
-    font-size:128px;   /* increased from 64px to 128px */
-    display:block;
-    margin-bottom:10px;
+    color:#ff9800;                   /* orange */
+    font-weight:700;
+    letter-spacing:1px;
 }
 
 /* ===== SECTIONS ===== */
@@ -88,16 +83,33 @@ h3{
     background:linear-gradient(#155a96,#0f4675);
 }
 
-/* ===== DROPDOWNS ===== */
+/* ===== DROPDOWNS (ENHANCED LOOK) ===== */
 select{
-    padding:26px;
+    padding:26px 70px 26px 26px;
     font-size:40px;
     width:100%;
     max-width:640px;
     display:block;
     margin:24px auto;
-    border-radius:10px;
-    border:2px solid #c7ddf4;
+    border-radius:14px;
+    border:3px solid #1e6fb8;
+    background-color:#f8fbff;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #1e6fb8 50%),
+        linear-gradient(135deg, #1e6fb8 50%, transparent 50%),
+        linear-gradient(to right, #dbe9f9, #dbe9f9);
+    background-position:
+        calc(100% - 30px) calc(50% - 6px),
+        calc(100% - 22px) calc(50% - 6px),
+        calc(100% - 60px) 50%;
+    background-size:
+        10px 10px,
+        10px 10px,
+        2px 55%;
+    background-repeat:no-repeat;
 }
 
 /* ===== CONTENT BOX ===== */
@@ -151,7 +163,6 @@ window.onload = function(){
 <body>
 
 <header>
-    <span class="school-icon">🏫</span>
     <h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
 </header>
 
